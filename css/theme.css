@@ -1,0 +1,16 @@
+/* 今は Light Glass をデフォルトにしておく。テーマ切り替えは後で拡張しやすいようにクラス構成だけ用意 */
+
+body.theme-light {
+    background: radial-gradient(circle at top left, #e0f2fe, #f9fafb);
+    color: var(--text-main);
+}
+
+body.theme-dark {
+    background: radial-gradient(circle at top left, #020617, #0f172a);
+    color: #e5e7eb;
+}
+
+body.theme-dark .glass {
+    background: rgba(15, 23, 42, 0.6);
+    border-color: rgba(148, 163, 184, 0.4);
+}

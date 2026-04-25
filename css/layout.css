@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main.memo-list {
+    padding: 80px 16px 16px;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* スクロールバーを少しだけ iOS っぽく */
+main.memo-list::-webkit-scrollbar {
+    width: 6px;
+}
+main.memo-list::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.5);
+    border-radius: 999px;
+}

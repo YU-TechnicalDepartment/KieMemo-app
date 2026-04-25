@@ -1,0 +1,101 @@
+.edit-toolbar {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow-soft);
+    z-index: 10;
+}
+
+.edit-toolbar h1 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.icon-btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    border-radius: 999px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.icon-btn .material-symbols-rounded {
+    font-size: 24px;
+}
+
+.icon-btn.save {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+}
+
+.edit-container {
+    padding: 90px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.memo-title {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.memo-body {
+    width: 100%;
+    min-height: 200px;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    background: rgba(255, 255, 255, 0.7);
+    resize: vertical;
+}
+
+.duration-box {
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.duration-box select {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.delete-btn {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.delete-btn.hidden {
+    display: none;
+}

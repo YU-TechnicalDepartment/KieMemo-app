@@ -1,6 +1,4 @@
 import { loadMemos, saveMemos } from "./storage.js";
-import jsQR from "https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js";
-import QRCode from "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js";
 
 const params = new URLSearchParams(window.location.search);
 const memoId = params.get("id");

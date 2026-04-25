@@ -1,0 +1,58 @@
+.memo-card {
+    padding: 12px 14px;
+    border-radius: var(--radius-medium);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    font-size: 14px;
+    color: var(--text-main);
+    position: relative;
+    overflow: hidden;
+    transform-origin: top center;
+    animation: memo-enter 220ms ease-out;
+}
+
+.memo-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--text-sub);
+}
+
+.memo-timer {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: #1d4ed8;
+}
+
+/* 消える前のフェードアウト */
+.memo-fading {
+    animation: memo-fadeout 800ms ease-in forwards;
+}
+
+@keyframes memo-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes memo-fadeout {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.96);
+    }
+}

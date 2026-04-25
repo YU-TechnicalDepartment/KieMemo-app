@@ -2,13 +2,13 @@ import { loadMemos } from "./storage.js";
 import { renderMemos, enableDragSort } from "./ui.js";
 
 let memos = loadMemos();
-let searchQuery = "";
+let searchQuery = ""; // ← 検索ワードを保持
 
 // 初回描画
 renderMemos(memos);
 enableDragSort(memos);
 
-// 1秒ごとに残り時間更新
+// 🔥 1秒ごとに残り時間更新（検索中なら検索結果だけ更新）
 setInterval(() => {
     memos = loadMemos();
 
@@ -29,7 +29,7 @@ document.getElementById("newMemoBtn").addEventListener("click", () => {
     window.location.href = "edit.html";
 });
 
-// 検索
+// 🔥 検索（検索ワードを保存しておく）
 document.getElementById("searchInput").addEventListener("input", (e) => {
     searchQuery = e.target.value;
 

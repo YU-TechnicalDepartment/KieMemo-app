@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>消えメモ</title>
 
-    <!-- Google Material Icons (SVG) -->
+    <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
 
     <!-- Base CSS -->
@@ -15,7 +15,6 @@
 
     <!-- Components -->
     <link rel="stylesheet" href="css/components/memo-card.css">
-    <link rel="stylesheet" href="css/components/dialog.css">
     <link rel="stylesheet" href="css/components/toolbar.css">
 </head>
 <body>
@@ -32,43 +31,6 @@
     </header>
 
     <main id="memoList" class="memo-list"></main>
-
-    <!-- Memo Editor Dialog -->
-    <div id="memoDialog" class="dialog hidden">
-        <div class="dialog-panel glass">
-
-            <header class="dialog-header">
-                <h2 id="dialogTitle">新しいメモ</h2>
-                <button id="closeDialogBtn" class="close">
-                    <span class="material-symbols-rounded">close</span>
-                </button>
-            </header>
-
-            <input id="memoTitleInput" class="memo-title-input" placeholder="タイトル" />
-
-            <textarea id="memoBodyInput" class="memo-body-input" placeholder="本文を入力..."></textarea>
-
-            <div class="duration-setting">
-                <label>消えるまでの時間</label>
-                <select id="durationSelect" class="duration-select">
-                    <option value="30000">30秒</option>
-                    <option value="60000">1分</option>
-                    <option value="180000">3分</option>
-                    <option value="300000">5分</option>
-                </select>
-            </div>
-
-            <div class="dialog-buttons">
-                <button id="deleteMemoBtn" class="delete-btn hidden">
-                    <span class="material-symbols-rounded">delete</span> 削除
-                </button>
-
-                <button id="saveMemoBtn" class="save-btn">
-                    <span class="material-symbols-rounded">check</span> 保存
-                </button>
-            </div>
-        </div>
-    </div>
 
     <script type="module" src="js/app.js"></script>
 </body>

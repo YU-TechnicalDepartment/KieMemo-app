@@ -17,11 +17,13 @@ const editTitle = document.getElementById("editTitle");
 // ダイアログ
 const dialog = document.getElementById("confirmDialog");
 const dialogMsg = document.getElementById("confirmMessage");
+const dialogContent = document.getElementById("confirmContent");
 const dialogOk = document.getElementById("confirmOk");
 const dialogCancel = document.getElementById("confirmCancel");
 
-function showDialog(message, onOk) {
+function showDialog(message, contentHTML = "", onOk) {
     dialogMsg.textContent = message;
+    dialogContent.innerHTML = contentHTML;
     dialog.classList.remove("hidden");
 
     dialogOk.onclick = () => {
@@ -78,7 +80,7 @@ document.getElementById("saveBtn").addEventListener("click", () => {
 
 // 削除
 deleteBtn.addEventListener("click", () => {
-    showDialog("本当に削除しますか？", () => {
+    showDialog("本当に削除しますか？", "", () => {
         memos = memos.filter(m => m.id !== memoId);
         saveMemos(memos);
         window.location.href = "index.html";
@@ -87,7 +89,7 @@ deleteBtn.addEventListener("click", () => {
 
 // 戻る
 document.getElementById("backBtn").addEventListener("click", () => {
-    showDialog("保存せず戻りますか？", () => {
+    showDialog("保存せず戻りますか？", "", () => {
         window.location.href = "index.html";
     });
 });
@@ -101,20 +103,22 @@ document.getElementById("qrMakeBtn").addEventListener("click", () => {
     });
 
     QRCode.toDataURL(data, { width: 300 }, (err, url) => {
-        dialogMsg.innerHTML = `<img src="${url}" style="width:100%">`;
-        dialog.classList.remove("hidden");
+        showDialog("このQRを相手に読み取ってもらってください", `<img src="${url}" style="width:100%">`, () => {});
     });
 });
 
 // QR読み取り
 document.getElementById("qrReadBtn").addEventListener("click", async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    const video = document.createElement("video");
-    video.srcObject = stream;
-    video.play();
 
-    dialogMsg.innerHTML = `<video id="qrVideo" autoplay style="width:100%"></video>`;
-    dialog.classList.remove("hidden");
+    const video = document.createElement("video");
+    video.autoplay = true;
+    video.srcObject = stream;
+
+    showDialog("QRコードをカメラに写してください", `<video id="qrVideo" autoplay style="width:100%"></video>`, () => {
+        stream.getTracks().forEach(t => t.stop());
+    });
+
     document.getElementById("qrVideo").srcObject = stream;
 
     const canvas = document.createElement("canvas");

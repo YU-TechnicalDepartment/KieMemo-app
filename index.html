@@ -22,15 +22,6 @@
             <h1>消えメモ</h1>
         </div>
         <div class="toolbar-right">
-            <label class="duration-label">
-                消えるまで：
-                <select id="durationSelect">
-                    <option value="30000">30秒</option>
-                    <option value="60000">1分</option>
-                    <option value="180000">3分</option>
-                    <option value="300000">5分</option>
-                </select>
-            </label>
             <button id="newMemoBtn" class="primary">＋</button>
         </div>
     </header>
@@ -38,16 +29,31 @@
     <main id="memoList" class="memo-list"></main>
 
     <!-- New Memo Dialog -->
-    <div id="memoDialog" class="dialog glass hidden">
-        <textarea id="memoInput" placeholder="メモを入力..."></textarea>
+    <div id="memoDialog" class="dialog hidden">
+        <div class="dialog-panel glass">
+            
+            <header class="dialog-header">
+                <h2>新しいメモ</h2>
+                <button id="closeDialogBtn" class="close">×</button>
+            </header>
 
-        <div class="dialog-actions">
-            <button id="saveMemoBtn" class="primary">保存</button>
-            <button id="closeDialogBtn" class="close">閉じる</button>
+            <textarea id="memoInput" class="memo-input" placeholder="メモを入力..."></textarea>
+
+            <div class="duration-setting">
+                <label>消えるまでの時間</label>
+                <select id="durationSelect" class="duration-select">
+                    <option value="30000">30秒</option>
+                    <option value="60000">1分</option>
+                    <option value="180000">3分</option>
+                    <option value="300000">5分</option>
+                </select>
+            </div>
+
+            <button id="saveMemoBtn" class="save-btn">保存</button>
         </div>
     </div>
 
-    <!-- ES Modules で app.js だけ読み込む -->
+    <!-- ES Modules -->
     <script type="module" src="js/app.js"></script>
 </body>
 </html>

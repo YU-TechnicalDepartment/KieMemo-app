@@ -3,14 +3,22 @@
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(226, 232, 240, 0.9);
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-    cursor: pointer;
+    cursor: grab;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.memo-card:active {
+    cursor: grabbing;
+    transform: scale(0.97);
 }
 
 .memo-title {
     font-size: 16px;
     font-weight: 600;
+    color: #0f172a;
 }
 
 .memo-meta {

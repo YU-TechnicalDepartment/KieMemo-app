@@ -1,38 +1,49 @@
 import { loadMemos, saveMemos } from "./storage.js";
-import { renderMemos, openDialog, closeDialog } from "./ui.js";
-
-const newMemoBtn = document.getElementById("newMemoBtn");
-const saveMemoBtn = document.getElementById("saveMemoBtn");
-const closeDialogBtn = document.getElementById("closeDialogBtn");
-const memoInput = document.getElementById("memoInput");
-const durationSelect = document.getElementById("durationSelect");
+import { renderMemos, openEditor, closeEditor } from "./ui.js";
 
 let memos = loadMemos();
 renderMemos(memos);
 
-newMemoBtn.addEventListener("click", () => {
-    openDialog();
+document.getElementById("newMemoBtn").addEventListener("click", () => {
+    openEditor(null);
 });
 
-closeDialogBtn.addEventListener("click", () => {
-    closeDialog();
+document.getElementById("closeDialogBtn").addEventListener("click", () => {
+    closeEditor();
 });
 
-saveMemoBtn.addEventListener("click", () => {
-    const text = memoInput.value.trim();
-    if (!text) return;
+document.getElementById("saveMemoBtn").addEventListener("click", () => {
+    const title = document.getElementById("memoTitleInput").value.trim();
+    const body = document.getElementById("memoBodyInput").value.trim();
+    const duration = Number(document.getElementById("durationSelect").value);
 
-    const duration = Number(durationSelect.value) || 60000;
+    const deleteBtn = document.getElementById("deleteMemoBtn");
+    const editingId = deleteBtn.dataset.id;
 
-    const memo = {
-        id: crypto.randomUUID(),
-        text,
-        createdAt: Date.now(),
-        duration,
-    };
+    if (editingId) {
+        const memo = memos.find((m) => m.id === editingId);
+        memo.title = title;
+        memo.body = body;
+        memo.duration = duration;
+    } else {
+        memos.unshift({
+            id: crypto.randomUUID(),
+            title,
+            body,
+            createdAt: Date.now(),
+            duration,
+        });
+    }
 
-    memos.unshift(memo);
     saveMemos(memos);
     renderMemos(memos);
-    closeDialog();
+    closeEditor();
+});
+
+document.getElementById("deleteMemoBtn").addEventListener("click", () => {
+    const id = document.getElementById("deleteMemoBtn").dataset.id;
+    memos = memos.filter((m) => m.id !== id);
+    saveMemos(memos);
+    renderMemos(memos);
+    closeEditor();
 });

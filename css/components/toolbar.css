@@ -18,15 +18,17 @@
     margin: 0;
 }
 
+/* 🔥 検索バーを 4分の1サイズにして右寄せ */
 .search-box {
-    flex: 1;
-    margin: 0 12px;
-    padding: 8px 12px;
+    width: 25%;                /* ← ここが重要（全体の1/4） */
+    min-width: 90px;           /* スマホで潰れないように */
+    margin-right: 12px;        /* ＋ボタンとの間隔 */
+    padding: 6px 10px;
     border-radius: 12px;
     border: 1px solid rgba(148,163,184,0.5);
     background: rgba(255,255,255,0.6);
     backdrop-filter: blur(10px);
-    font-size: 14px;
+    font-size: 13px;
 }
 
 button.primary {

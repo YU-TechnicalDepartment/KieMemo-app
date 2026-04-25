@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メモ編集 - 消えメモ</title>
 
-    <!-- Google Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
-
-    <!-- Base CSS -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/pages/edit.css">
 </head>
@@ -34,12 +31,11 @@
 
         <div class="duration-box glass">
             <label>消えるまでの時間</label>
-            <select id="durationSelect">
-                <option value="30000">30秒</option>
-                <option value="60000">1分</option>
-                <option value="180000">3分</option>
-                <option value="300000">5分</option>
-            </select>
+
+            <div class="duration-inputs">
+                <input id="durationMin" type="number" min="0" max="999" value="0"> 分
+                <input id="durationSec" type="number" min="0" max="59" value="30"> 秒
+            </div>
         </div>
 
         <button id="deleteBtn" class="delete-btn hidden">
@@ -48,6 +44,17 @@
         </button>
 
     </main>
+
+    <!-- カスタムダイアログ -->
+    <div id="confirmDialog" class="confirm hidden">
+        <div class="confirm-panel glass">
+            <p id="confirmMessage">本当に削除しますか？</p>
+            <div class="confirm-buttons">
+                <button id="confirmCancel" class="cancel-btn">キャンセル</button>
+                <button id="confirmOk" class="ok-btn">OK</button>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="js/edit.js"></script>
 </body>

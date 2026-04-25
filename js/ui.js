@@ -2,7 +2,16 @@ export function renderMemos(memos) {
     const memoListEl = document.getElementById("memoList");
     memoListEl.innerHTML = "";
 
+    const now = Date.now();
+
     memos.forEach((memo) => {
+        const remain = memo.createdAt + memo.duration - now;
+
+        if (remain <= 0) return; // 消える
+
+        const min = Math.floor(remain / 60000);
+        const sec = Math.floor((remain % 60000) / 1000);
+
         const card = document.createElement("article");
         card.className = "memo-card";
         card.dataset.id = memo.id;
@@ -13,12 +22,11 @@ export function renderMemos(memos) {
 
         const meta = document.createElement("div");
         meta.className = "memo-meta";
-        meta.textContent = `あと ${Math.round(memo.duration / 1000)} 秒`;
+        meta.textContent = `あと ${min}分${sec}秒`;
 
         card.appendChild(title);
         card.appendChild(meta);
 
-        // 編集画面へ遷移
         card.addEventListener("click", () => {
             window.location.href = `edit.html?id=${memo.id}`;
         });

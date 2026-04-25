@@ -1,4 +1,6 @@
 import { loadMemos, saveMemos } from "./storage.js";
+import jsQR from "https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js";
+import QRCode from "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js";
 
 const params = new URLSearchParams(window.location.search);
 const memoId = params.get("id");
@@ -90,4 +92,62 @@ document.getElementById("backBtn").addEventListener("click", () => {
     showDialog("保存せず戻りますか？", () => {
         window.location.href = "index.html";
     });
+});
+
+// QR生成
+document.getElementById("qrMakeBtn").addEventListener("click", () => {
+    const data = JSON.stringify({
+        title: titleEl.value,
+        body: bodyEl.value,
+        duration: Number(minEl.value) * 60000 + Number(secEl.value) * 1000
+    });
+
+    QRCode.toDataURL(data, { width: 300 }, (err, url) => {
+        dialogMsg.innerHTML = `<img src="${url}" style="width:100%">`;
+        dialog.classList.remove("hidden");
+    });
+});
+
+// QR読み取り
+document.getElementById("qrReadBtn").addEventListener("click", async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    const video = document.createElement("video");
+    video.srcObject = stream;
+    video.play();
+
+    dialogMsg.innerHTML = `<video id="qrVideo" autoplay style="width:100%"></video>`;
+    dialog.classList.remove("hidden");
+    document.getElementById("qrVideo").srcObject = stream;
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const scan = () => {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+
+            const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(img.data, canvas.width, canvas.height);
+
+            if (code) {
+                const data = JSON.parse(code.data);
+
+                titleEl.value = data.title;
+                bodyEl.value = data.body;
+
+                const total = data.duration;
+                minEl.value = Math.floor(total / 60000);
+                secEl.value = Math.floor((total % 60000) / 1000);
+
+                stream.getTracks().forEach(t => t.stop());
+                dialog.classList.add("hidden");
+                return;
+            }
+        }
+        requestAnimationFrame(scan);
+    };
+
+    scan();
 });

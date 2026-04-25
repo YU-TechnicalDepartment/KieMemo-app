@@ -12,11 +12,6 @@
     z-index: 10;
 }
 
-.edit-toolbar h1 {
-    font-size: 18px;
-    margin: 0;
-}
-
 .icon-btn {
     border: none;
     background: rgba(255, 255, 255, 0.35);
@@ -24,12 +19,6 @@
     border-radius: 999px;
     padding: 8px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.icon-btn .material-symbols-rounded {
-    font-size: 24px;
 }
 
 .icon-btn.save {
@@ -61,23 +50,26 @@
     border-radius: 14px;
     border: 1px solid rgba(148, 163, 184, 0.6);
     background: rgba(255, 255, 255, 0.7);
-    resize: vertical;
 }
 
 .duration-box {
     padding: 14px;
     border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.duration-box select {
-    padding: 8px;
-    border-radius: 10px;
+.duration-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.duration-inputs input {
+    width: 70px;
+    padding: 6px;
+    border-radius: 8px;
     border: 1px solid rgba(148, 163, 184, 0.6);
     background: rgba(255, 255, 255, 0.7);
 }
@@ -98,4 +90,50 @@
 
 .delete-btn.hidden {
     display: none;
+}
+
+/* カスタムダイアログ */
+.confirm {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm.hidden {
+    display: none;
+}
+
+.confirm-panel {
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.35);
+    width: min(300px, 90%);
+}
+
+.confirm-buttons {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancel-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #94a3b8;
+    color: white;
+    border: none;
+}
+
+.ok-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: #ef4444;
+    color: white;
+    border: none;
 }

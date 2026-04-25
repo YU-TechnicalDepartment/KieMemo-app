@@ -59,12 +59,18 @@
     <div id="confirmDialog" class="confirm hidden">
         <div class="confirm-panel glass">
             <p id="confirmMessage">本当に削除しますか？</p>
+            <div id="confirmContent"></div>
+
             <div class="confirm-buttons">
                 <button id="confirmCancel" class="cancel-btn">キャンセル</button>
                 <button id="confirmOk" class="ok-btn">OK</button>
             </div>
         </div>
     </div>
+
+    <!-- 🔥 QRライブラリを script タグで読み込む（これが重要） -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
     <script type="module" src="js/edit.js"></script>
 </body>
